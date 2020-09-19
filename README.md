@@ -7,6 +7,12 @@ This tool depends on python3 and uses some libraries. In order to install them, 
 $ sudo pip3 install -r requirements.txt
 ```
 
+### Dependencies
+ - Python 3
+ - proxybroker (for proxies)
+ - tqdm (for progress)
+ - selenium (for playing video)
+
 ## Usage
 ```sh
 $ python3 bot.py --help
