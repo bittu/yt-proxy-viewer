@@ -12,7 +12,6 @@ from datetime import timedelta
 import socket
 import time
 import requests
-from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
 import asyncio
 from proxybroker import Broker
 
@@ -243,26 +242,6 @@ def get_cli_args():
         sys.exit(0)
 
     return args
-
-def get_proxies():
-    req_proxy = RequestProxy()
-    proxies = req_proxy.get_proxy_list()
-    return proxies
-
-def get_verified_proxies():
-    proxies = get_proxies()
-    print('proxies len:', len(proxies))
-    verified_proxies = []
-    for proxy in proxies:
-        try:
-            ipaddr = get_ipaddr(proxy=proxy.ip + ':' + proxy.port)
-            if ipaddr:
-                print('success:', proxy)
-                verified_proxies.append(proxy)
-        except requests.exceptions.RequestException:
-            continue
-
-    return verified_proxies
 
 proxyList = []
 

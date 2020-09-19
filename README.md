@@ -12,6 +12,8 @@ $ sudo pip3 install -r requirements.txt
  - proxybroker (for proxies)
  - tqdm (for progress)
  - selenium (for playing video)
+ - chromedriver-binary (install manually using pip according to your current chrome browser version)
+    `pip install chromedriver-binary==85.0.4183.87.0`
 
 ## Usage
 ```sh

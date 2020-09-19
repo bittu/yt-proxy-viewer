@@ -92,7 +92,7 @@ class Bot:
                         print('video duration time in seconds:', seconds)
             sleep_time = seconds
             print('stopping video in %s seconds' % sleep_time)
-            youtube.get_screenshot()
+            # youtube.get_screenshot()
             # time.sleep(sleep_time)
             playing = True
             # duration = math.floor(youtube.get_duration())
@@ -133,7 +133,7 @@ class Bot:
         return True
 
 def call_bot(urls, cli_args):
-    for i in range(3):
+    for i in range(5):
         cli_args.url = choice(urls)
         print(cli_args)
         bot = Bot(cli_args)
