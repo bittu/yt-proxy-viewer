@@ -120,7 +120,7 @@ class Bot:
                     break
 
                 if statusText == 'playing':
-                    cur_perc = ((seconds - current_time) / seconds) * 100
+                    cur_perc = math.floor((current_time / seconds) * 100)
                     pbar.set_description(statusText)
                     pbar.refresh()
                     pbar.update(cur_perc - pbar.n)
