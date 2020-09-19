@@ -245,7 +245,7 @@ def get_cli_args():
 
 proxyList = []
 
-async def show(proxies):
+async def save(proxies):
     while True:
         proxy = await proxies.get()
         if proxy is None: break
@@ -257,8 +257,8 @@ def get_broker_proxies():
     proxies = asyncio.Queue()
     broker = Broker(proxies)
     tasks = asyncio.gather(
-        broker.find(types={'HTTP': ['High']}, countries=['US', 'CA', 'IN'], limit=15, strict=True),
-        show(proxies))
+        broker.find(types={'HTTP': ['High']}, countries=['US', 'CA', 'IN'], limit=50, strict=True),
+        save(proxies))
 
     loop = asyncio.get_event_loop()
     loop.run_until_complete(tasks)

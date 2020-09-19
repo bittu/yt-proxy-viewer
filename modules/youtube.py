@@ -8,7 +8,6 @@ https://selenium-python.readthedocs.io/
 
 import time
 from selenium import webdriver
-import chromedriver_binary
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -68,7 +67,7 @@ class YouTube:
         # Sets the width and height of the current window$
         self.browser.set_window_size(1920, 1080)
         # Opens the page
-        self.open_url()
+        # self.open_url()
 
     def find_by_class(self, class_name):
         """ finds an element by class name """

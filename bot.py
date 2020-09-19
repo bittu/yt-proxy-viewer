@@ -55,6 +55,11 @@ class Bot:
                 proxy=self.opts.proxy,
                 verbose=self.opts.verbose
             )
+            try:
+                youtube.open_url()
+            except:
+                failed = True
+                break
             title = youtube.get_title()
             if not title:
                 if self.opts.verbose:
@@ -98,9 +103,10 @@ class Bot:
             # duration = math.floor(youtube.get_duration())
             # print('duration:', youtube.get_duration(),  duration)
             pbar = tqdm(total=seconds)
+            buffer_count = 0
             while playing:
                 status = youtube.get_player_state()
-                current_time = math.floor(youtube.get_current_time())
+                # current_time = math.floor(youtube.get_current_time())
                 statusText = self.player_status(status)
 
                 if status == -2:
@@ -113,9 +119,15 @@ class Bot:
                     print('video playback ended')
                     break
 
-                pbar.set_description(statusText)
-                pbar.refresh()
-                pbar.update()
+                if statusText == 'playing':
+                    pbar.set_description(statusText)
+                    pbar.refresh()
+                    pbar.update()
+
+                if statusText == 'buffering':
+                    buffer_count += 1
+                    if buffer_count == 60:
+                        break
 
                 if statusText == 'unstarted':
                     youtube.skip_ad()
