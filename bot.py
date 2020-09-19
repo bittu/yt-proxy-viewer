@@ -163,10 +163,11 @@ def _main():
         cli_args = utils.get_cli_args()
 
         urls = []
-        url_file = open(cli_args.file,'r')
-        for url in url_file.readlines():
-            # print(url)
-            urls.append(url)
+        url_file = open(cli_args.file, 'r')
+        urls = url_file.read().splitlines()
+        # for url in url_file.readlines():
+        #     # print(url)
+        #     urls.append(url)
         url_file.close()
 
         if cli_args.no_proxy:
