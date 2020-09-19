@@ -106,7 +106,7 @@ class Bot:
             buffer_count = 0
             while playing:
                 status = youtube.get_player_state()
-                # current_time = math.floor(youtube.get_current_time())
+                current_time = math.floor(youtube.get_current_time())
                 statusText = self.player_status(status)
 
                 if status == -2:
@@ -120,9 +120,10 @@ class Bot:
                     break
 
                 if statusText == 'playing':
+                    cur_perc = ((seconds - current_time) / seconds) * 100
                     pbar.set_description(statusText)
                     pbar.refresh()
-                    pbar.update()
+                    pbar.update(cur_perc - pbar.n)
 
                 if statusText == 'buffering':
                     buffer_count += 1
